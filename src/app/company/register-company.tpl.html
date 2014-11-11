@@ -1,0 +1,41 @@
+<section>
+    <form class="form-horizontal" role="form" name="form" novalidate>  
+        <div class="form-group">
+            <label for="inputCompanyname" class="col-sm-4 control-label">Companyname</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputCompanyname" placeholder="Companyname" ng-model="company.name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-4 control-label">E-Mail</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" placeholder="E-Mail" ng-model="company.email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-4 control-label">Username</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="company.username" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-4 control-label">Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="company.password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword" class="col-sm-4 control-label">Confirm Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="ConfirmPassword" ng-model="company.passwordConfirm" data-match="company.password">
+            </div>
+            <div data-ng-show="form.confirmPassword.$error.match">Passwords do not match!</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-10">
+                <button class="btn btn-default" ng-click="register(company)" ng-disabled="form.$invalid"> Register</button>
+            </div>
+        </div>
+    </form>
+</section>
