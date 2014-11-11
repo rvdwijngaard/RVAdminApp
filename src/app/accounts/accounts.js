@@ -2,4 +2,4 @@
 
 .controller('accountsCtrl', function (
 
-    ) { })
+    ) { });

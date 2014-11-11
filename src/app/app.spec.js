@@ -1,17 +1,17 @@
-describe( 'AppCtrl', function() {
+describe( 'ApplicationController', function() {
   describe( 'isCurrentUrl', function() {
-    var AppCtrl, $location, $scope;
+    var ApplicationController, $location, $scope;
 
-    beforeEach( module( 'ngBoilerplate' ) );
+    beforeEach( module( 'rvAdminApp' ) );
 
     beforeEach( inject( function( $controller, _$location_, $rootScope ) {
       $location = _$location_;
       $scope = $rootScope.$new();
-      AppCtrl = $controller( 'AppCtrl', { $location: $location, $scope: $scope });
+      ApplicationController = $controller( 'ApplicationController', { $location: $location, $scope: $scope });
     }));
 
     it( 'should pass a dummy test', inject( function() {
-      expect( AppCtrl ).toBeTruthy();
+      expect( ApplicationController ).toBeTruthy();
     }));
   });
 });
