@@ -37,8 +37,8 @@ module.exports = {
    * This is a collection of files used during testing only.
    */
   test_files: {
-    js: [
-      'vendor/angular-mocks/angular-mocks.js'
+    js: [            
+      'vendor/angular-mocks/angular-mocks.js'      
     ]
   },
 

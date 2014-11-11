@@ -29,11 +29,6 @@ describe( 'copmany  section', function() {
 			expect(data).toBe(company);
 		});
 		
-	}));
-
-	it('register should change the location to the root', function() {
-		
-
-	});
+	}));	
 });
 

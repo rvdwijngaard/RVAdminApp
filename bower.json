@@ -6,10 +6,9 @@
     "angular-mocks": "latest",
     "bootstrap": "latest",
     "angular-bootstrap": "latest",
-    "angular-ui-router": "latest",
-	"underscore": "latest",
-	"angular-route" :  "latest", 
-	"jquery" :  "latest"
+    "underscore": "latest",
+    "angular-route": "latest",
+    "jquery": "latest"    
   },
   "dependencies": {}
 }
