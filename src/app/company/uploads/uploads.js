@@ -1,4 +1,4 @@
-angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'angularFileUpload'])
+angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config'])
 
 .config(function ($provide, $routeProvider) {
 	$routeProvider

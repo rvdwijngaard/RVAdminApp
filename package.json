@@ -1,8 +1,8 @@
 {
-  "author": "Henry van Butselaar",
-  "name": "RapidValue Admin App",
+  "author": "Ron van der Wijngaard",
+  "name": "RapidValueAdminApp",
   "version": "0.3.2",
-  "homepage": "https://github.com/ngbp/ngbp",
+  "homepage": "http://www.to-increase.com",
   "licenses": {
     "type": "MIT",
     "url": "https://raw.github.com/ngbp/ngbp/master/LICENSE"
