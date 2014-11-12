@@ -63,11 +63,13 @@ module.exports = {
   vendor_files: {
     js: [
       'vendor/jquery/dist/jquery.js',
+      'vendor/ng-file-upload/angular-file-upload-shim.min.js',
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-route/angular-route.js'
+      'vendor/angular-route/angular-route.js', 
+      'vendor/ng-file-upload/angular-file-upload.js'
     ],
     css: [
     ],

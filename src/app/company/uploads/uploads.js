@@ -1,32 +1,55 @@
-angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config'])
+angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'angularFileUpload'])
 
-.controller('uploadController', function(){
-
+.config(function ($provide, $routeProvider) {
+	$routeProvider
+		.when('/company/uploads/uploadfile', { templateUrl: 'company/uploads/uploadfile.tpl.html', controller: 'uploadController' });
 })
 
-.factory('uploadService', ['$http','baseUrl','$q', function($http, baseUrl, $q)
+.controller('uploadController', ['$scope', '$location', 'uploadService','$upload','$http',  function($scope, $location, uploadService,$upload, $http){		
+	$scope.onFileSelect = function($files) {		
+		var file = $files[0];
+
+		uploadService.upload(file).then(function(data){
+			console.log(data);
+			$location.path('/company/uploads');
+		});
+	};	
+}])
+
+.factory('uploadService', ['$http','baseUrl','$q','$window', function($http, baseUrl, $q, $window)
 {
-	return{ 
-		getPresignedUrl : function(fileToUpload) {	
-			var d = new $q.defer();	
+	function getPresignedUrl(file) {
+		return $http.get('https://devapi.to-increase.com/ti_rapidvalue/api' + '/uploads/getpresignedurl', { headers: { 'x-content-type' : file.type}});
+	}
 
-			$http.get(baseUrl + '/uploads/getpresignedurl', { headers: { 'x-content-type' : fileToUpload.type}})
-				.success(function (signedUrl) {
-					signedUrl = signedUrl.substring(1, signedUrl.length - 1);
-					d.resolve(signedUrl);
-				});
-			return d.promise;
-		},	
-		upload : function(fileToUpload, preSignedUrl) {
-			var d = new $q.defer();
-			var xhr = new XMLHttpRequest();
+	function uploadCompleted(data) {			
+		return $http.post(baseUrl + '/uploads', data);
+	}
 
-			xhr.onerror = function (e) {};
+	return{		
+		upload : function(fileToUpload) {
+			var d = new $q.defer();			
+			getPresignedUrl(fileToUpload).success(function(data){
+				var xhr = new $window.XMLHttpRequest();
 
-			xhr.onreadystatechange = function () {};
+				xhr.addEventListener("load", function(event) { 
+					uploadCompleted(data).success(function(data){
+						d.resolve(data);
+					});
+				} , false);
+				
+				xhr.addEventListener("error", function(event) {d.reject(event);} , false);
+				
+				xhr.addEventListener("abort", function(event) {d.reject(event);}, false);			
 
-			xhr.open('PUT', preSignedUrl, true);
-			
+				xhr.upload.addEventListener('progress', function(event) {
+					// handle the progress here
+				}, false);
+
+				xhr.open('PUT', data.PresignedUrl, true);
+				
+				xhr.send(fileToUpload);
+			});
 			return d.promise;
 		}
 	};

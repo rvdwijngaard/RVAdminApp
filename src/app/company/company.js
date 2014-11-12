@@ -1,4 +1,4 @@
-angular.module("rvAdminApp.company", ['ngRoute', 'config'])
+angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.uploads'])
 
 .config(function ($provide, $routeProvider) {
     $routeProvider
