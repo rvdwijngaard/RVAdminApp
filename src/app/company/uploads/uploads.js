@@ -5,7 +5,7 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config'])
 		.when('/company/uploads/uploadfile', { templateUrl: 'company/uploads/uploadfile.tpl.html', controller: 'uploadController' });
 })
 
-.controller('uploadController', ['$scope', '$location', 'uploadService','$upload','$http',  function($scope, $location, uploadService,$upload, $http){		
+.controller('uploadController', ['$scope', '$location', 'uploadService', function($scope, $location, uploadService){		
 	$scope.onFileSelect = function($files) {		
 		var file = $files[0];
 
@@ -19,13 +19,15 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config'])
 .factory('uploadService', ['$http','baseUrl','$q','$window', function($http, baseUrl, $q, $window)
 {
 	function getPresignedUrl(file) {
-		return $http.get('https://devapi.to-increase.com/ti_rapidvalue/api' + '/uploads/getpresignedurl', { headers: { 'x-content-type' : file.type}});
+		//'https://devapi.to-increase.com/ti_rapidvalue/api'
+		return $http.get(baseUrl + '/uploads/getpresignedurl', { headers: { 'x-content-type' : file.type}});
 	}
 
 	function uploadCompleted(data) {			
 		return $http.post(baseUrl + '/uploads', data);
 	}
 
+	
 	return{		
 		upload : function(fileToUpload) {
 			var d = new $q.defer();			

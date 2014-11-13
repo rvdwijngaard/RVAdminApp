@@ -54,7 +54,7 @@ describe('rvAdminApp.uploads', function(){
 		var svc, baseUrl;
 		var $httpBackend;
 		var file = {type : "application/xml"};
-		
+
 		beforeEach(module('rvAdminApp.company.uploads'));
 		beforeEach(inject(function ($injector) {
 			svc = $injector.get('uploadService');
@@ -73,19 +73,6 @@ describe('rvAdminApp.uploads', function(){
 			$httpBackend.expectGET(baseUrl + "/uploads/getpresignedurl",undefined, function(headers){  
 				return headers['x-content-type'] === file.type ;
 			}).respond(200, response);
-		}));
-
-		it('get presigned url should return a valid url without quotes', inject( function($httpBackend) {
-			// arrange
-						
-			// act
-			var promise = svc.upload(file);
-			$httpBackend.flush();
-
-			// assert
-			promise.then(function(data){
-				expect(data).toBe(response);
-			});			
 		}));
 		
 
@@ -114,7 +101,10 @@ describe('rvAdminApp.uploads', function(){
 			expect(xhrObj.open).toHaveBeenCalled();
 			expect(xhrObj.send).toHaveBeenCalled();
 			expect(xhrObj.addEventListener).toHaveBeenCalled();
-			expect(xhrObj.addEventListener.callCount).toBe(4);					
+			expect(xhrObj.addEventListener.callCount).toBe(4);		
+			promise.then(function(data){
+				expect(data).toBe(response);
+			});						
 		}));			
 	});
 });
