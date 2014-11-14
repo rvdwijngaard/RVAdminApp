@@ -24,61 +24,10 @@
             <div class="bounce2"></div>
             <div class="bounce3"></div>
         </div>
-        <div id="navbar" class="navbar" role="navigation" style="display: block;">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar">a</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html#"><img src="assets/img/logo.png"></a>
-                </div>
-                <ul class="nav navbar-nav navbar-actions navbar-left">
-                    <li class="active">
-                        <a href="">company admin</a>
-                    </li>
-                    <li>
-                        <a href="">user admin</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="persondata dropdown">
-                        <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="currentUserName">Bjorn Kuijt</span>
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
-                        </ul>
-                        <span class="thumbContainer">
-                            <img class="img-circle ti-colleaguephoto" src="" />
-                        </span>
-                    </li>
-                </ul>
-            </div>
+       
         
         <!-- end: Header -->
+    <div id="navbar" ng-include="'navbar/navbar.tpl.html'"></div>
     <div id="content">       
         <ng-view />
     </div>

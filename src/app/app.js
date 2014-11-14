@@ -9,7 +9,8 @@ angular.module("rvAdminApp", [
     'http-auth-interceptor',
     'ui.bootstrap',
     'rvAdminApp.company',
-    'rvAdminApp.authentication',    
+    'rvAdminApp.authentication',
+    'rvAdminApp.users',
     'config'
 ])
 
