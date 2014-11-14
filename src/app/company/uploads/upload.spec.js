@@ -14,8 +14,10 @@ describe('rvAdminApp.uploads', function(){
 			$provide.value('uploadService', mockUploadService);
 		}));
 
-		beforeEach(inject(function($q) {
-
+		beforeEach(inject(function($q,$http,$httpBackend) {				
+				mockUploadService.listUploads = function() {					
+					return $http.get("http://localhost/rapidvalue/api/uploads");
+				};
 				mockUploadService.upload = function(file) {
 					var d = new $q.defer();
 					d.resolve(response);
@@ -36,12 +38,13 @@ describe('rvAdminApp.uploads', function(){
 
 		it('should redirect us to the company uploads list page', inject(function($httpBackend){
 			$httpBackend.when('PUT', response.preSignedUrl).respond(200, response);
-			
+			$httpBackend.when("GET","http://localhost/rapidvalue/api/uploads").respond(200);
 			spyOn($location, 'path');
 
-			var  files = [{ type : "application/xml" , name : "testfile.xml", size : "10"}];
+			var  files = { files: [{ type : "application/xml" , name : "testfile.xml", size : "10"}]};
 
 			scope.onFileSelect(files);
+			scope.uploadFile();
 
 			scope.$digest();
 			
@@ -60,8 +63,8 @@ describe('rvAdminApp.uploads', function(){
 			svc = $injector.get('uploadService');
 		}));
 
-		beforeEach(angular.mock.inject(function (_baseUrl_,_$httpBackend_) {			
-			baseUrl = _baseUrl_;						
+		beforeEach(angular.mock.inject(function (_baseUrlRapidValue_,_$httpBackend_) {			
+			baseUrl = _baseUrlRapidValue_;						
 			$httpBackend = _$httpBackend_;
 			var response = {
 				preSignedUrl : "http://to-increase.com", 
@@ -76,8 +79,9 @@ describe('rvAdminApp.uploads', function(){
 		}));
 		
 
-		it('XMLHttpRequest is configured properly', inject(function($httpBackend, $window) {
+		it('XMLHttpRequest is configured properly', inject(function($httpBackend, $window,$rootScope) {
 			// arrange
+			var scope = $rootScope.$new();
 			var file = {};
 			$window.XMLHttpRequest= angular.noop;
 			addEventListenerSpy = jasmine.createSpy("addEventListener");
@@ -96,15 +100,16 @@ describe('rvAdminApp.uploads', function(){
 			spyOn($window, "XMLHttpRequest").andReturn(xhrObj);	
 
 			// act
-			var promise = svc.upload(file);
+			var promise = svc.upload(scope, file);
 			$httpBackend.flush();
 			expect(xhrObj.open).toHaveBeenCalled();
 			expect(xhrObj.send).toHaveBeenCalled();
-			expect(xhrObj.addEventListener).toHaveBeenCalled();
-			expect(xhrObj.addEventListener.callCount).toBe(4);		
+	
 			promise.then(function(data){
 				expect(data).toBe(response);
-			});						
+			});			
+
+
 		}));			
 	});
 });

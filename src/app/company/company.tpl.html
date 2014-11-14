@@ -1,5 +1,67 @@
-﻿<section>
-    <div ng-include="'navbar/navbar.tpl.html'"></div>
-   <div>Your current company {{company.Name}} !!!!!</div>
-       
-</section>
+﻿		<div id="content" class="container-fluid content" style="min-height: 723px; padding-top: 68px; display: block;">
+			<div class="row">
+
+				<!-- Place holder for the dynamic views-->
+				<div class="contentCntr">
+				
+					<div>
+						<div class="col-lg-12 main">
+							<div class="container-fluid myteam person companyadmin defaultview">
+								<div class="row titlerow">
+									<div class="col-lg-12">
+										<h2 class="pagetitle">Company admin<span class="role">{{company.Name}}</span></h2>									
+										<div class="clearfix"></div>
+									</div>
+								</div>
+
+								<div class="row contentrow">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="tab-content">
+											<div id="about" class="tab-pane active" style="margin: 0 -15px;">
+												<div class="col-md-4">
+													<div class="card details left">
+														<h3>Company details</h3>
+														<hr>
+														<span class="title">Company name</span>
+														<input type="text" value="{{company.Name}}" readonly="readonly">
+														<span class="title">Account type</span>
+														<input type="text" value="Demo (16 days left)" readonly="readonly">
+														<span class="title">API key</span>
+														<a class="mailto" href="#">view</a>
+													</div>
+													
+													<div class="card details left">
+														<h3>Administrator details</h3>
+														<hr>
+														<span class="title">Name</span>
+														<input type="text" value="Bastiaan Berends" readonly="readonly">
+														<span class="title">Email</span>
+														<a class="mailto" href="mailto:bkuijt@to-increase.com">bkuijt@to-increase.com</a>
+														<span class="title">Phone (work)</span>
+													</div>													
+													
+												</div>
+												<div class="col-md-8">
+													<div class="card large">
+														<h3>Solutions</h3>
+														<hr>
+														<span class="title">Your solutions</span>
+														<span class="alert alert-success">Solution succesfully uploaded</span>
+														<hr>
+														<span class="title">Upload solution</span>
+														<input type="file" name="solution" class="upload-solution" />
+														<a href="#">upload instructions</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div><!--/row-->
+		</div><!--/container-->

@@ -1,12 +1,12 @@
  <section>
-	 <div class="row spacer">
-        <div class="col-md-4">RapidValue Solution File</div>        
-        <input type="file" ng-file-select="onFileSelect($files)">        
+	  <div class="row spacer">
+        <div class="col-md-4">RapidValue Solution File</div>
+        <div class="col-md-6"><input type="file" onchange="angular.element(this).scope().onFileSelect(this)"></div>
     </div>
     <div class="row spacer">
         <div class="col-md-4"></div>
         <div class="col-md-6">
-            <button class="btn btn-default btn-primary" ng-click="uploadFile()">Upload File</button>            
+            <button class="btn btn-default btn-primary" ng-click="uploadFile()" ng-class="{disabled:IsDisabled()}">Upload File</button>            
         </div>
     </div>
 </section>

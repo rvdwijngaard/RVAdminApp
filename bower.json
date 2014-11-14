@@ -8,7 +8,9 @@
     "angular-bootstrap": "latest",
     "underscore": "latest",
     "angular-route": "latest",
-    "jquery": "latest"    
+    "jquery": "latest"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ngprogress": "~1.0.7"
+  }
 }
