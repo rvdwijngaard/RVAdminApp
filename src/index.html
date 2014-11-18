@@ -8,6 +8,11 @@
 
     <!-- font awesome from BootstrapCDN -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon-16x16.png">
+    <link rel="apple-touch-icon" sizes="48x48" href="assets/img/apple-touch-icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple-touch-icon-114x114.png">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
@@ -28,11 +33,11 @@
         
         <!-- end: Header -->
     <div id="navbar" ng-include="'navbar/navbar.tpl.html'"></div>
-    <div id="content">       
+    <div id="content" class="container-fluid content" style="min-height: 723px; padding-top: 68px; display: block;">       
         <ng-view />
     </div>
     <div id="content-outer">
-        <div id="login-holder">            
+        <div id="login-holder" style="min-height: 723px; padding-top: 68px; display: block;">            
             <div ng-include="'authentication/login/login.tpl.html'"></div>
         </div>
     </div>

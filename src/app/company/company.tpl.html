@@ -1,4 +1,4 @@
-﻿		<div id="content" class="container-fluid content" style="min-height: 723px; padding-top: 68px; display: block;">
+﻿		
 			<div class="row">
 
 				<!-- Place holder for the dynamic views-->
@@ -24,34 +24,12 @@
 														<hr>
 														<span class="title">Company name</span>
 														<input type="text" value="{{company.Name}}" readonly="readonly">
-														<span class="title">Account type</span>
-														<input type="text" value="Demo (16 days left)" readonly="readonly">
 														<span class="title">API key</span>
-														<a class="mailto" href="#">view</a>
-													</div>
-													
-													<div class="card details left">
-														<h3>Administrator details</h3>
-														<hr>
-														<span class="title">Name</span>
-														<input type="text" value="Bastiaan Berends" readonly="readonly">
-														<span class="title">Email</span>
-														<a class="mailto" href="mailto:bkuijt@to-increase.com">bkuijt@to-increase.com</a>
-														<span class="title">Phone (work)</span>
+														<input type="text" value="{{company.ApiToken}}" readonly="readonly">
 													</div>													
-													
 												</div>
 												<div class="col-md-8">
-													<div class="card large">
-														<h3>Solutions</h3>
-														<hr>
-														<span class="title">Your solutions</span>
-														<span class="alert alert-success">Solution succesfully uploaded</span>
-														<hr>
-														<span class="title">Upload solution</span>
-														<input type="file" name="solution" class="upload-solution" />
-														<a href="#">upload instructions</a>
-													</div>
+													<div ng-include="'company/uploads/uploads.tpl.html'"></div>
 												</div>
 											</div>
 										</div>
@@ -62,6 +40,5 @@
 						</div>
 					</div>
 				</div>
-
 			</div><!--/row-->
-		</div><!--/container-->
+		

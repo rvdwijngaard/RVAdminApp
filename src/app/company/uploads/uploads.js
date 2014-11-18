@@ -1,5 +1,5 @@
 angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress'])
-
+/* jshint -W024 */
 .config(function ($provide, $routeProvider) {
 	$routeProvider
 		.when('/company/uploads', { templateUrl: 'company/uploads/uploads.tpl.html', controller: 'uploadController' });
@@ -8,14 +8,18 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 })
 
 .controller('uploadController', ['$scope', '$location', 'uploadService', 'ngProgress', function($scope, $location, uploadService, ngProgress){
-	
-	uploadService.listUploads()
-		.success(function(data){
-			$scope.uploads = data;
-		});			
+	function load() {
+		uploadService.listUploads()
+			.success(function(data){
+				$scope.uploads = data;
+			});				
+	}	
+	load();
 
-	$scope.deleteItem = function(element){
-		console.log(element);
+	$scope.deleteItem = function(id){
+		uploadService.deleteItem(id).success(function() {
+			load();
+		});
 	};
 
 	$scope.onFileSelect = function (element) {
@@ -27,10 +31,10 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 	$scope.uploadFile = function() {		
 		var file = $scope.fileToUpload;
 
-		uploadService.upload($scope, file).then(function(data){			
-			console.log(data);
+		uploadService.upload($scope, file).then(function(data){						
+			$scope.message = "Solution succesfully uploaded";
 			ngProgress.complete();
-			$location.path('/company/uploads');
+			load();
 		});
 
 		$scope.$on("uploadProgress", function(e, progress) {
@@ -39,7 +43,7 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 	};	
 }])
 
-.factory('uploadService', ['$http','baseUrlRapidValue','$q','$window','$rootScope', function($http, baseUrlRapidValue, $q, $window, $rootScope)
+.factory('uploadService', ['$http','baseUrlRapidValue','$q','$window','companyService', function($http, baseUrlRapidValue, $q, $window, companyService)
 {	
 	function getPresignedUrl(file) {
 		//'https://devapi.to-increase.com/ti_rapidvalue/api'
@@ -47,7 +51,23 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 	}
 
 	function postUpload(data) {			
-		return $http.post(baseUrlRapidValue + '/uploads', data);
+		var d = new $q.defer();
+		companyService.get().success(function(company) {
+			data.apikey = company.ApiToken;
+			$http.post(baseUrlRapidValue + '/uploads', data)
+				.success(function(data){
+					d.resolve(data);
+				})
+				.error(function(data, status){
+					d.reject(status);
+				});
+			})
+			.error(function(data, status){
+				d.reject(status);
+			});
+
+		
+		return d.promise;
 	}
 
 	function onUploadComplete(result, deferred, scope)
@@ -84,7 +104,7 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 			getPresignedUrl(fileToUpload).success(function(data){
 				var xhr = new $window.XMLHttpRequest();
 				xhr.onload = function () {
-					postUpload(data).success(function(data){
+					postUpload(data).then(function(data){
 						d.resolve(data);
 					});	
 				};
@@ -101,7 +121,11 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 		},
 		listUploads : function () {
 			return $http.get(baseUrlRapidValue + '/uploads');
-		}		
+		},
+		
+		deleteItem : function(id) {
+			return $http.delete(baseUrlRapidValue + '/uploads/' + id);
+		}	
 	};
 }]);
 
