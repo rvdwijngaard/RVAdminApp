@@ -16,7 +16,8 @@
 	};
 }])
 
-.factory('userService', ['$http', 'baseUrl', function($http, baseUrl){
+.service('userService', ['$http', 'baseUrl', function($http, baseUrl){
+	this.currentUser = {};
 	return {
 		get : function() {
 			return $http.get(baseUrl + "/accountadmin/users");

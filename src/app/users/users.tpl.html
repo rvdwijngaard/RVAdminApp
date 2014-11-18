@@ -5,21 +5,20 @@
             <div class="clearfix"></div>
         </div>
     </div>                             
+
     <div class="row contentrow" ng-repeat="user in users | orderBy:'Name'">        
+
       <div class="col-xs-6 col-md-3">{{user.Name}}</div>
       <div class="col-xs-6 col-md-3">{{user.EMailAddress}}</div>
-      <div class="col-xs-6 col-md-3"><div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div></checkbox></div>
+      <div class="col-xs-6 col-md-3"/>    
       <div class="col-xs-6 col-md-3">
         <div class="btn-group" dropdown is-open="status.isopen">
             <button type="button" class="btn btn-xs dropdown-toggle" ng-disabled="disabled">
                 Action<span class="caret"></span>
             </button>
             <ul class="dropdown-menu pull-right" role="menu">
-                <li><a href="" ng-click="deleteItem(upload.Id)">Delete</a></li>       
+                <li><a href="" ng-click="deleteItem(upload.Id)">Reset Password</a></li>       
+                <li><a href="" ng-click="deleteItem(upload.Id)">Make Administrator</a></li>    
             </ul>
         </div>
     </div>                                

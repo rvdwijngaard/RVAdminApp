@@ -20,26 +20,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="persondata dropdown">
                         <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="currentUserName">Bjorn Kuijt</span>
+                            <span class="currentUserName">{{currentUser.Name}}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
+                            <li class="item" ng-controller="LoginController">
+                                <a href="#" ng-click="logout()">
+                                    logout 
                                 </a>
                             </li>
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
-                            <li class="item ng-scope">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
-                            <li class="item ng-scope">
+                            <li class="item">
                                 <a href="#">
                                     menu item
                                 </a>

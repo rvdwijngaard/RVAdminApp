@@ -14,12 +14,13 @@ angular.module("rvAdminApp", [
     'config'
 ])
 
-.controller('ApplicationController', function ($scope) {
-    $scope.currentUser = null;        
-
-    $scope.setCurrentUser = function (user) {
-        $scope.currentUser = user;
-    };   
+.controller('ApplicationController',function ($scope, $http, loginService) {
+    // $http.get(baseUrl + '/account', {cache : true})
+    //     .success(function(user){
+    //         $scope.currentUser = user;
+    //     });
+    $scope.currentUser = loginService.currentUser();
+    
 })
 
 .config(function ($provide, $routeProvider) {
