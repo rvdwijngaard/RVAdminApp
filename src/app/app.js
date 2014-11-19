@@ -14,12 +14,22 @@ angular.module("rvAdminApp", [
     'config'
 ])
 
-.controller('ApplicationController',function ($scope, $http, loginService, companyService) {
-    $scope.currentUser = loginService.currentUser();    
-    companyService.get().success(function(company){
-        $scope.company = company;
-    });
+.controller('ApplicationController',function ($scope, $http, loginService, companyService, $location) {
+     
+    $scope.getClass = function(path) {
+        if ($location.path().substr(0, path.length) == path) {
+            return "active";
+        } else {
+            return "";
+        }
+    };
 
+    $scope.$on('event:auth-loginConfirmed', function () {
+        $scope.currentUser = loginService.currentUser();   
+        companyService.get().success(function(company){
+            $scope.company = company;
+        });
+    });    
 })
 
 

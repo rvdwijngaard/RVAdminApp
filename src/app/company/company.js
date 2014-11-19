@@ -8,7 +8,6 @@ angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.u
 
 .controller('companyRegistrationCtrl', ['$scope', 'companyService', '$location',
     function($scope, companyService, $location) {
-
         $scope.register = function (company) {
                     companyService.register(company)
                         .success(function (data) {
@@ -30,7 +29,8 @@ angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.u
             var request = {
                 emailaddress: company.email,
                 name: company.name,
-                username: company.username,
+                accountName : company.accountname, 
+                username: company.email,
                 password: company.password
             };
             return $http.post(baseUrl + "/companyaccount", request);

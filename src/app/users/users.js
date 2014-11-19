@@ -2,10 +2,10 @@
 
 .config(function ($provide, $routeProvider) {
 	$routeProvider
-		.when('/company/users', { templateUrl: 'users/users.tpl.html', controller: 'usersCtrl' });
+		.when('/users', { templateUrl: 'users/users.tpl.html', controller: 'usersCtrl' });
 })
 
-.controller('usersCtrl',['$scope', 'userService', function ($scope, userService) { 
+.controller('usersCtrl', function ($scope, $q, userService) { 
 	userService.get()
 		.success(function(data){
 			$scope.users = data;
@@ -14,7 +14,17 @@
 	$scope.save = function (account) {
 		userService.save(account);
 	};
-}])
+
+	$scope.resetPassword = function(id) {		
+		userService.resetPassword(id)
+			.success(function(data) {
+				$scope.message = "The password has been changed";
+			})
+			.error(function(data, status) {
+				$scope.message = "["+ status + "] failed to reset the password"; 
+			});		
+	};
+})
 
 .service('userService', ['$http', 'baseUrl', function($http, baseUrl){
 	this.currentUser = {};
@@ -24,6 +34,9 @@
 		},
 		save : function(user) {
 			return $http.put(baseUrl + "/accountadmin/users", user);
+		},
+		resetPassword : function(id) {
+			return $http.post(baseUrl + '/accountadmin/users/' + id + '/resetpassword');
 		}
 	};
 }]);

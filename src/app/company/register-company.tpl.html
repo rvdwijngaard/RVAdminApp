@@ -1,41 +1,35 @@
-<section>
-    <form class="form-horizontal" role="form" name="form" novalidate>  
-        <div class="form-group">
-            <label for="inputCompanyname" class="col-sm-4 control-label">Companyname</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="inputCompanyname" placeholder="Companyname" ng-model="company.name" required>
+<div class="col-lg-12 main">
+    <div class="container-fluid myteam person companyadmin register defaultview">   
+        <div class="row contentrow">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tab-content">
+                    <div id="about" class="tab-pane active" style="margin: 0 -15px;">
+                        <div class="col-lg-8 col-md-10" style="float: none; margin: auto; max-width: 800px !important;">
+                            <img src="assets/img/logo-register.png" alt="" style="margin: 20px 0 40px 0;" />
+                            <div class="card details left">
+                                <div class="col-md-6">
+                                    <h1>Create your company account</h1>
+                                    <p>Create an account for Interact and get your organisation in sync...</p>
+                                </div>
+                                <div class="col-md-6 form">
+                                    <span class="title">Company name</span>
+                                    <input type="text" ng-model="company.name" placeholder="Company Name">
+                                    <span class="title">Your name</span>
+                                    <input type="text" ng-model="company.accountname" placeholder="Your Name"/>
+                                    <span class="title">Your email address</span>
+                                    <input type="text" placeholder="E-Mail" ng-model="company.email" />
+                                    <span class="title">Password</span>
+                                    <input type="text" placeholder="password" ng-model="company.password" />
+                                    <span class="title">Confirm Password</span>
+                                    <input type="text" placeholder="confirm password" id="confirmPassword" ng-model="company.passwordConfirm" data-match="company.password" />
+                                    <div data-ng-show="form.confirmPassword.$error.match">Passwords do not match!</div>
+                                    <input type="button" class="discussionbtn" value="Get started" ng-click="register(company)" ng-disabled="form.$invalid"/>                                                   
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="email" class="col-sm-4 control-label">E-Mail</label>
-            <div class="col-sm-4">
-                <input type="email" class="form-control" placeholder="E-Mail" ng-model="company.email" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputUsername" class="col-sm-4 control-label">Username</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="company.username" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword" class="col-sm-4 control-label">Password</label>
-            <div class="col-sm-4">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="company.password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword" class="col-sm-4 control-label">Confirm Password</label>
-            <div class="col-sm-4">
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="ConfirmPassword" ng-model="company.passwordConfirm" data-match="company.password">
-            </div>
-            <div data-ng-show="form.confirmPassword.$error.match">Passwords do not match!</div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-10">
-                <button class="btn btn-default" ng-click="register(company)" ng-disabled="form.$invalid"> Register</button>
-            </div>
-        </div>
-    </form>
-</section>
+    </div>

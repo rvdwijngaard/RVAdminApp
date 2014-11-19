@@ -8,13 +8,13 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.html#"><img src="assets/img/logo.png"></a>
-                </div>
+                </div>                
                 <ul class="nav navbar-nav navbar-actions navbar-left">
-                    <li class="active">
+                    <li ng-class="getClass('/company')">
                         <a href="#/company">company admin</a>
                     </li>
-                    <li>
-                        <a href="#/company/users">user admin</a>
+                    <li ng-class="getClass('/users')">
+                        <a href="#/users">user admin</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -28,12 +28,7 @@
                                 <a href="#" ng-click="logout()">
                                     logout 
                                 </a>
-                            </li>
-                            <li class="item">
-                                <a href="#">
-                                    menu item
-                                </a>
-                            </li>
+                            </li>                           
                         </ul>
                         <span class="thumbContainer">
                             <img class="img-circle ti-colleaguephoto" src="" />

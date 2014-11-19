@@ -1,7 +1,7 @@
                             <div class="container-fluid myteam person companyadmin defaultview">
                                 <div class="row titlerow">
                                     <div class="col-lg-12">
-                                        <h2 class="pagetitle">User admin<span class="role">Online Spankracht</span></h2>
+                                        <h2 class="pagetitle">User admin<span class="role">{{company.Name}}</span></h2>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -17,16 +17,16 @@
                                                             <div>
                                                                 <div class="container-fluid">
                                                                     <div class="row children">
-                                                                        <div class="col-xs-12 listcard" ng-repeat="user in users">
+                                                                        <div class="col-xs-12 listcard" ng-repeat="user in users | orderBy: 'Name'">
                                                                             <div class="pull-left col-md-9 col-xs-10">
                                                                                 
                                                                                 <span class="name">{{user.Name}}</span>
-                                                                                <span class="role">account</span>
+                                                                                <span class="role">{{user.EMailAddress}}</span>
                                                                             </div>                                                                            
                                                                             <div class="col-md-3 col-xs-2">
                                                                                 <div class="pull-right">
                                                                                     <span class="access-icon"><img src="assets/img/companyaccess.png" height="21" alt="" /></span>
-                                                                                        <a href="">reset password</a>                                                                                
+                                                                                        <a href="" ng-click="resetPassword(user.Id)">reset password</a>                                                                                
                                                                                 </div>
                                                                             </div>
                                                                             <div class="clearfix"></div>
