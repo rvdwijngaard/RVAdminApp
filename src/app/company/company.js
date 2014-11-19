@@ -2,22 +2,9 @@ angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.u
 
 .config(function ($provide, $routeProvider) {
     $routeProvider
-      .when('/company', { templateUrl: 'company/company.tpl.html', controller: 'companyCtrl' })  
+      .when('/company', { templateUrl: 'company/company.tpl.html'})  
       .when('/company/register', { templateUrl: 'company/register-company.tpl.html', controller: 'companyRegistrationCtrl' });
 })
-
-.controller('companyCtrl', ['$scope', 'companyService',
-    function ($scope, companyService) {
-        var loadCompany = function () {
-            companyService.get()
-            .success(function (data) {
-                $scope.company = data;
-            });
-        };
-        $scope.company = {};   
-
-        loadCompany();            
-    }])
 
 .controller('companyRegistrationCtrl', ['$scope', 'companyService', '$location',
     function($scope, companyService, $location) {

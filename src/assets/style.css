@@ -199,7 +199,7 @@ textarea.form-control:focus {
     width: 24px;    
 }
 
-assets/img.pageButton.active path { fill: #FF0000; }
+img.pageButton.active path { fill: #FF0000; }
 
 .panel-collapse {
   margin-bottom: 30px;
@@ -253,11 +253,11 @@ assets/img.pageButton.active path { fill: #FF0000; }
   padding: 38px 15px;
 }
 
-.navbar-brand > assets/img {
+.navbar-brand > img {
   margin: 15px 10px 0 15px;
   height: 40px;
 }
-.navbar-brand .brandname  > assets/img {
+.navbar-brand .brandname  > img {
   margin: 0px;
   height: 55px;
 }
@@ -372,7 +372,7 @@ assets/img.pageButton.active path { fill: #FF0000; }
   background: none;
 }
 
-.navbar .navbar-nav li .dropdown-toggle.avatar assets/img {
+.navbar .navbar-nav li .dropdown-toggle.avatar img {
   height: 40px;
   -webkit-border-radius: 50em;
   -moz-border-radius: 50em;
@@ -1617,7 +1617,7 @@ assets/img.pageButton.active path { fill: #FF0000; }
   line-height: 18px;
   cursor: pointer;
   font-weight: 600;
-  padding-top: 13px;
+  padding: 13px 0 0 13px;
   display: block;
 }
 
@@ -1625,6 +1625,7 @@ assets/img.pageButton.active path { fill: #FF0000; }
   font-size: 12px;
   font-weight: 300;
   display: block;
+  padding-left: 13px;
 }
 
 .companyadmin .listcard .department {
@@ -2342,7 +2343,7 @@ h5.processdetailTitle {
 /*==================THUMB=========================*/
 
 
-.thumb assets/img {
+.thumb img {
   height: 83px;
   width: auto;
   border-radius: 45px;
@@ -2389,7 +2390,7 @@ h5.processdetailTitle {
   display: block;
 }
 
-.thumb assets/img {
+.thumb img {
   height: 83px;
   width: auto;
   border-radius: 45px;
@@ -2428,7 +2429,7 @@ h5.processdetailTitle {
   min-width: 38px;
 }
 
-.thumb.small assets/img {
+.thumb.small img {
   height: 40px;
   width: 40px;
   border-radius: 24px;
@@ -3243,7 +3244,7 @@ h5.processdetailTitle {
     margin: 100px 0 15px -19px;
   }  
   
-    .sidebar .nofavadded assets/img {
+    .sidebar .nofavadded img {
       width: 169px;
     }
 }
@@ -3292,7 +3293,7 @@ h5.processdetailTitle {
     width: 50px;
     height: 50px;
   }
-  .navbar .navbar-brand > assets/img {
+  .navbar .navbar-brand > img {
     margin-left: 30px;
   }     
   .sidebar ul.nav.nav-sidebar li a:before{
@@ -3320,7 +3321,7 @@ h5.processdetailTitle {
   }
   */
 
-  .icongroup .thumb.small assets/img {
+  .icongroup .thumb.small img {
     height: 42px;
     margin-top: -7px;
   }
@@ -3580,6 +3581,3 @@ input.upload-solution {
   margin: 15px 0;
 }
 
-.item{
-  width: 120px !important;
-}

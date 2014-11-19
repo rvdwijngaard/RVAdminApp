@@ -50,10 +50,11 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 		return $http.get(baseUrlRapidValue + '/uploads/getpresignedurl', { headers: { 'x-content-type' : file.type}});
 	}
 
-	function postUpload(data) {			
+	function postUpload(data, file) {			
 		var d = new $q.defer();
 		companyService.get().success(function(company) {
 			data.apikey = company.ApiToken;
+			data.FileName = file.name;
 			$http.post(baseUrlRapidValue + '/uploads', data)
 				.success(function(data){
 					d.resolve(data);
@@ -69,16 +70,7 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 		
 		return d.promise;
 	}
-
-	function onUploadComplete(result, deferred, scope)
-	{
-		return function () {
-                scope.$apply(function () {
-                    deferred.resolve(result);
-                });
-            };		
-	}
-
+	
 	function onError(result, deferred, scope) {
 		return function () {
                 scope.$apply(function () {
@@ -104,7 +96,7 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 			getPresignedUrl(fileToUpload).success(function(data){
 				var xhr = new $window.XMLHttpRequest();
 				xhr.onload = function () {
-					postUpload(data).then(function(data){
+					postUpload(data, fileToUpload).then(function(data){
 						d.resolve(data);
 					});	
 				};

@@ -56,7 +56,7 @@ describe('rvAdminApp.uploads', function(){
 	describe('service test', function() {
 		var svc, baseUrl;
 		var $httpBackend;
-		var file = {type : "application/xml"};
+		var file = {type : "application/xml", name : "myfile.xml"};
 
 		beforeEach(module('rvAdminApp.company'));
 		beforeEach(inject(function ($injector) {
@@ -82,7 +82,7 @@ describe('rvAdminApp.uploads', function(){
 		it('XMLHttpRequest is configured properly', inject(function($httpBackend, $window,$rootScope) {
 			// arrange
 			var scope = $rootScope.$new();
-			var file = {};
+			var file = {name :'myfile.xml'};
 			$window.XMLHttpRequest= angular.noop;
 			addEventListenerSpy = jasmine.createSpy("addEventListener");
 			openSpy = jasmine.createSpy("open");

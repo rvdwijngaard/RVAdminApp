@@ -44,47 +44,46 @@ angular.module("rvAdminApp.authentication", [])
 })
 
 
-.factory('loginService', function ($http, $q, baseUrl, authService, $window) {
-    var loginService = {};    
+.factory('loginService', function ($http, $q, baseUrl, authService, $window) {        
     
-    _loginConfirmed = function(currentUser) {                  
-        // but needs to deal with expired tokens
-        authService.loginConfirmed(
-                null,
-                function (config) {
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + currentUser.AccessToken;
-                    config.headers.Authorization = 'Bearer ' + currentUser.AccessToken;
+    var _loginConfirmed = function(currentUser) {                  
+            // but needs to deal with expired tokens
+            authService.loginConfirmed(
+                    null,
+                    function (config) {
+                        $http.defaults.headers.common.Authorization = 'Bearer ' + currentUser.AccessToken;
+                        config.headers.Authorization = 'Bearer ' + currentUser.AccessToken;
 
-                    return config;
+                        return config;
+                    });
+        };
+
+    return {
+        login : function (credentials) {
+            var d = new $q.defer();
+            // remove the obsolete authorization token
+            $http.defaults.headers.common.Authorization = '';
+            $http.post(baseUrl + '/login', credentials)
+                .then(function (resp) {     
+                    var user = resp.data;
+                    $window.sessionStorage.currentUser = JSON.stringify(user);
+                    _loginConfirmed(user);
+                    d.resolve();
                 });
-    };
-
-    loginService.login = function (credentials) {
-        var d = new $q.defer();
-        // remove the obsolete authorization token
-        $http.defaults.headers.common.Authorization = '';
-        $http.post(baseUrl + '/login', credentials)
-            .then(function (resp) {     
-                var user = resp.data;
-                $window.sessionStorage.currentUser = JSON.stringify(user);
-                this.LoginConfirmed(user);
-                d.resolve();
-            });
-        return d.promise;
-    };
+            return d.promise;
+        },
     
-    loginService.logout = function () {
-        $window.sessionStorage.removeItem('currentUser');
-    };
+        logout : function () {
+            $window.sessionStorage.removeItem('currentUser');
+        },
 
-    loginService.currentUser = function() {
-        var u = sessionStorage.getItem('currentUser');
-        return JSON.parse(u);
-    };
-
-    loginService.loginConfirmed = function(user) {
-        _loginConfirmed(user);
-    };
-
-    return loginService;
+        currentUser : function() {
+            var u = sessionStorage.getItem('currentUser');
+            return JSON.parse(u);
+        },
+        loginConfirmed : function(currentUser) {                  
+            // but needs to deal with expired tokens
+            _loginConfirmed(currentUser);
+        }
+    };    
 });
