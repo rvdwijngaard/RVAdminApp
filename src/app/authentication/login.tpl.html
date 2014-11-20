@@ -43,7 +43,7 @@
 
         <section class="login register" id="registerbox" style="display: none;">
             <div class="col-lg-12 main">
-    <div class="container-fluid myteam person companyadmin register defaultview">   
+    <div class="container-fluid myteam person companyadmin register defaultview" ng-controller="companyRegistrationCtrl">   
         <div class="row contentrow">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="tab-content">
@@ -57,17 +57,17 @@
                                 </div>
                                 <div class="col-md-6 form">
                                     <span class="title">Company name</span>
-                                    <input type="text" ng-model="company.name" placeholder="Company Name">
+                                    <input type="text" ng-model="newcompany.name" placeholder="Company Name">
                                     <span class="title">Your name</span>
-                                    <input type="text" ng-model="company.accountname" placeholder="Your Name"/>
+                                    <input type="text" ng-model="newcompany.accountname" placeholder="Your Name"/>
                                     <span class="title">Your email address</span>
-                                    <input type="text" placeholder="E-Mail" ng-model="company.email" />
+                                    <input type="text" placeholder="E-Mail" ng-model="newcompany.email" />
                                     <span class="title">Password</span>
-                                    <input type="password" placeholder="password" ng-model="company.password" />
+                                    <input type="password" placeholder="password" ng-model="newcompany.password" />
                                     <span class="title">Confirm Password</span>
-                                    <input type="password" placeholder="confirm password" id="confirmPassword" ng-model="company.passwordConfirm" data-match="company.password" />
+                                    <input type="password" placeholder="confirm password" id="confirmPassword" ng-model="newcompany.passwordConfirm" data-match="company.password" />
                                     <div data-ng-show="form.confirmPassword.$error.match">Passwords do not match!</div>
-                                    <input type="button" class="discussionbtn" value="Get started" ng-click="register(company)" ng-disabled="form.$invalid"/>                                                   
+                                    <input type="button" class="discussionbtn" value="Get started" ng-click="register(newcompany)" ng-disabled="form.$invalid"/>                                                   
                                 </div>
                                 <div class="clr"></div>
                             </div>

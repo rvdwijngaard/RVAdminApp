@@ -16,6 +16,11 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 	}	
 	load();
 
+	$scope.showLogFile = function(upload)
+	{
+		$location.path = decodeURIComponent(upload.LogFilePath);
+	};
+
 	$scope.deleteItem = function(id){
 		uploadService.deleteItem(id).success(function() {
 			load();

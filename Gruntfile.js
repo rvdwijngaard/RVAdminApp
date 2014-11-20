@@ -436,7 +436,8 @@ module.exports = function ( grunt ) {
         accessKeyId: "<%= aws.accessKeyId %>",
         secretAccessKey: "<%= aws.secretAccessKey %>",
         bucket: "rvadmin.to-increase.com",    
-        region: "eu-west-1"
+        region: "eu-west-1",
+        gzip : false
       },
       build: {
         cwd: "bin/",
