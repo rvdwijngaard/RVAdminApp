@@ -1,16 +1,16 @@
 {
   "name": "ng-boilerplate",
   "version": "0.3.3",
-  "devDependencies": {
-    "angular": "latest",
-    "angular-mocks": "latest",
+  "devDependencies": {    
+    "angular-mocks": "latest"    
+  },
+  "dependencies": {
+    "angular": "latest",    
     "bootstrap": "latest",
     "angular-bootstrap": "latest",
     "underscore": "latest",
     "angular-route": "latest",
-    "jquery": "latest"
-  },
-  "dependencies": {
+    "jquery": "latest",
     "ngprogress": "~1.0.7"
   }
 }
