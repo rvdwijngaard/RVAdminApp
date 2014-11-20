@@ -19,6 +19,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks("grunt-aws");
 
   /**
    * Load in our build configuration file.
@@ -35,6 +36,7 @@ module.exports = function ( grunt ) {
      * version. It's already there, so we don't repeat ourselves here.
      */
     pkg: grunt.file.readJSON("package.json"),
+    aws: grunt.file.readJSON("aws-credentials.json"),
 
     /**
      * The banner is the comment that is placed at the top of our compiled 
@@ -429,7 +431,18 @@ module.exports = function ( grunt ) {
           }
         }
       },
-
+    s3: {
+      options: {
+        accessKeyId: "<%= aws.accessKeyId %>",
+        secretAccessKey: "<%= aws.secretAccessKey %>",
+        bucket: "rvadmin.to-increase.com",    
+        region: "eu-west-1"
+      },
+      build: {
+        cwd: "bin/",
+        src: "**"
+      }
+    },
     delta: {
       /**
        * By default, we want the Live Reload to work for all tasks; this is
@@ -575,7 +588,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+    'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile', 's3'
   ]);
 
   /**

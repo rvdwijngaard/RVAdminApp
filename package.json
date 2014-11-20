@@ -12,7 +12,8 @@
     "type": "git",
     "url": "git@github.com:ngbp/ngbp.git"
   },
-  "dependencies": {},
+  "dependencies": {    
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-bump": "0.0.6",
@@ -30,6 +31,7 @@
     "grunt-html2js": "^0.1.9",
     "grunt-karma": "^0.8.2",
     "grunt-ngmin": "0.0.2",
+    "grunt-aws": "^0.4.0",
     "karma": "^0.12.9",
     "karma-chrome-launcher": "^0.1.5",
     "karma-coffee-preprocessor": "^0.2.1",

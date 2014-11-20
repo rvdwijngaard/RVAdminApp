@@ -2,8 +2,7 @@ angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.u
 
 .config(function ($provide, $routeProvider) {
     $routeProvider
-      .when('/company', { templateUrl: 'company/company.tpl.html'})  
-      .when('/company/register', { templateUrl: 'company/register-company.tpl.html', controller: 'companyRegistrationCtrl' });
+      .when('/company', { templateUrl: 'company/company.tpl.html'});      
 })
 
 .controller('companyRegistrationCtrl', ['$scope', 'companyService', '$location',

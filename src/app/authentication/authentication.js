@@ -22,6 +22,7 @@ angular.module("rvAdminApp.authentication", [])
 
             var login = elem.find('#login-holder');
             var main = elem.find('#content');
+            var navbar = elem.find('#navbar');
 
             login.hide();
 
@@ -32,10 +33,12 @@ angular.module("rvAdminApp.authentication", [])
                     loginService.loginConfirmed(currentUser);                            
                 } else {
                     login.show();
-                    main.hide();
+                    navbar.hide();
+                    main.hide();                    
                 }
             });
             scope.$on('event:auth-loginConfirmed', function () {
+                navbar.show();
                 main.show();
                 login.hide();
             });

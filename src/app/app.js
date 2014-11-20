@@ -15,7 +15,7 @@ angular.module("rvAdminApp", [
 ])
 
 .controller('ApplicationController',function ($scope, $http, loginService, companyService, $location) {
-     
+         
     $scope.getClass = function(path) {
         if ($location.path().substr(0, path.length) == path) {
             return "active";
@@ -23,8 +23,13 @@ angular.module("rvAdminApp", [
             return "";
         }
     };
+    
+    $scope.$on('event:auth-loginRequired', function () {
+        $scope.isLogin = true;
+    });
 
     $scope.$on('event:auth-loginConfirmed', function () {
+        $scope.isLogin = false;
         $scope.currentUser = loginService.currentUser();   
         companyService.get().success(function(company){
             $scope.company = company;

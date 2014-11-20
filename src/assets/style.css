@@ -3581,3 +3581,40 @@ input.upload-solution {
   margin: 15px 0;
 }
 
+  .register h1 {
+        font-weight: 200;
+        color: #444444;
+        margin: 50px 0 30px 15px;
+      }
+      .register p {
+        font-size: 16px;
+        font-weight: 300;
+        color: #444444;
+        margin-left: 15px;
+      }
+      .form {
+        padding: 30px;
+      }      
+      .register .form input[type="text"] , 
+      .register .form input[type="password"]{
+        background: #f6f6f6;
+        padding: 13px;
+        width : 100%;
+        border: 0;
+        border-radius: 3px;
+        margin: 6px 0 0 0;
+      }
+      
+      .register .form .discussionbtn {
+        text-transform: uppercase;
+        font-weight: 400;
+        width: 100%;
+        margin-top: 30px;
+      }
+
+.navbar-spacing {
+      min-height: 723px; 
+      padding-top: 68px; 
+      display: block;
+}
+  
