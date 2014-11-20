@@ -24,19 +24,13 @@ angular.module("rvAdminApp", [
         }
     };
     
-    $scope.$on('event:auth-loginRequired', function () {
-        $scope.isLogin = true;
-    });
-
     $scope.$on('event:auth-loginConfirmed', function () {
-        $scope.isLogin = false;
         $scope.currentUser = loginService.currentUser();   
         companyService.get().success(function(company){
             $scope.company = company;
         });
     });    
 })
-
 
 .config(function ($provide, $routeProvider) {
     $routeProvider        
