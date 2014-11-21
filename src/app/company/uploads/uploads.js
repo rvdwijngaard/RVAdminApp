@@ -2,10 +2,30 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 /* jshint -W024 */
 .config(function ($provide, $routeProvider) {
 	$routeProvider
-		.when('/company/uploads', { templateUrl: 'company/uploads/uploads.tpl.html', controller: 'uploadController' });
+		.when('/company/uploads', { templateUrl: 'company/uploads/uploads.tpl.html', controller: 'uploadController' });	
 	$routeProvider
-		.when('/company/uploads/uploadfile', { templateUrl: 'company/uploads/uploadfile.tpl.html', controller: 'uploadController' });
+		.when('/company/uploads/:id', { templateUrl: 'company/uploads/upload-details.tpl.html', controller: 'uploadDetailController' });
+
 })
+
+
+.controller('uploadDetailController', function($scope, $http,uploadService, $routeParams){
+	// get the data		
+	uploadService.getUpload($routeParams.id)
+		.success(function(upload){
+			var logurl = window.decodeURIComponent(upload.LogFilePath);
+			$http.defaults.headers.common.Authorization = '';
+
+			$http.get(logurl)
+				.success(function (data) {
+					$scope.data = data;
+				})
+				.error(function (x) {
+					console.log(x);
+				});							
+		});    
+})
+	
 
 .controller('uploadController', ['$scope', '$location', 'uploadService', 'ngProgress', function($scope, $location, uploadService, ngProgress){
 	function load() {
@@ -15,6 +35,8 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 			});				
 	}	
 	load();
+	
+
 
 	$scope.showLogFile = function(upload)
 	{
@@ -35,11 +57,14 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 
 	$scope.uploadFile = function() {		
 		var file = $scope.fileToUpload;
-
+		ngProgress.height("10px");	
+		$scope.isDisabled = true;
 		uploadService.upload($scope, file).then(function(data){						
 			$scope.message = "Solution succesfully uploaded";
 			ngProgress.complete();
 			load();
+			$scope.fileToUpload = null;
+			$scope.isDisabled = false;
 		});
 
 		$scope.$on("uploadProgress", function(e, progress) {
@@ -122,7 +147,10 @@ angular.module('rvAdminApp.company.uploads', ['ngRoute', 'config', 'ngProgress']
 		
 		deleteItem : function(id) {
 			return $http.delete(baseUrlRapidValue + '/uploads/' + id);
-		}	
+		},	
+		getUpload : function(id) {
+			return $http.get(baseUrlRapidValue + '/uploads/' + id);
+		}
 	};
 }]);
 

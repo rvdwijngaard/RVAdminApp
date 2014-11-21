@@ -1,0 +1,39 @@
+                            <div class="container-fluid myteam person companyadmin defaultview">
+                                <div class="row titlerow">
+                                    <div class="col-lg-12">
+                                        <h2 class="pagetitle">User admin<span class="role">{{company.Name}}</span></h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row contentrow">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="tab-content">
+                                            <div id="about" class="tab-pane active" style="margin: 0 -15px;">
+                                                <div headingclass="panel-heading" bodyclass="panel-body">                                                     
+                                                    <div class="panel-collapse collapse in" collapse="!isOpen" style="height: auto !important;">
+                                                        <div class="panel-body">
+                                                            <div>
+                                                                <div class="container-fluid">                                                                    
+                                                                    <div class="row children">                                                                        
+                                                                        <div class="col-xs-12 listcard" ng-repeat="e in data | filter : {Level:'Information'}">
+                                                                            <div class="pull-left col-md-9 col-xs-10">                                                                                
+                                                                                <span class="role">{{e.Timestamp}}</span>
+                                                                                <span class="role">{{e.RenderedMessage}}</span>
+                                                                         </div>  
+
+                                                                            <div class="clearfix"></div>
+                                                                        </div>                                                                       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>

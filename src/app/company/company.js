@@ -5,19 +5,18 @@ angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.u
       .when('/company', { templateUrl: 'company/company.tpl.html'});      
 })
 
-.controller('companyRegistrationCtrl', ['$scope', 'companyService', '$location',
-    function($scope, companyService, $location) {
+.controller('companyRegistrationCtrl', 
+    function($scope, companyService, $location, $window) {
         $scope.register = function (company) {
                     companyService.register(company)
-                        .success(function (data) {
-                            $scope.company = data;
-                            $location.path("/");
+                        .success(function (data) {                            
+                            $window.location.reload();
                         })
                         .error(function (status) {
                             $scope.registrationError = true;
                         });
                 };
-    }])
+    })
 
 .factory('companyService', ['$http', 'baseUrl', '$q', function ($http, baseUrl, $q) {               
     return {
