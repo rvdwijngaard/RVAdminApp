@@ -14,7 +14,7 @@ angular.module("rvAdminApp.company", ['ngRoute', 'config', 'rvAdminApp.company.u
                             $location.path("/");
                         })
                         .error(function (status) {
-                            console.log(status);
+                            $scope.registrationError = true;
                         });
                 };
     }])

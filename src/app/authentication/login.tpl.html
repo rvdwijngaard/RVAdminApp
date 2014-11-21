@@ -4,79 +4,95 @@
             $('.btn-login').click(function () {
 
                 $('#loginbox').show();
-                $('#loginbox .login-inp.name').focus();                
+                $('#loginbox .login-inp.name').focus();
             });
 
             $('.btn-register').click(function () {
 
-                $('.register').show();                
+                $('.register').show();
                 $('.register .login-inp.name').focus();
                 $('#loginbox').hide();
             });
 
         });
     </script>
-   <section class="login" id="loginbox">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="app-logo col-lg-9 col-md-11 col-sm-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1" id="login-inner" ng:controller="LoginController">
-                    <form ng-submit="login(credentials)">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td><input type="text" class="login-inp name" ng-model="credentials.username" placeholder="Name" ng-class="{error:loginError!=null}" tabindex="3" /></td>
-                            </tr>
-                            <tr>
-                                <td><input type="password" class="login-inp password" ng-model="credentials.password" placeholder="Password" ng-class="{error:loginError!=null}" tabindex="4" /><input type="submit" class="submit-login" value="login" tabindex="5" /></td>
-                            </tr>
-                            <tr ng-if="loginError!=null">
-                                <td><span class="login-error">Use a valid name and password.</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="noaccount">No account yet? <a href="javascript:void();" class="btn-register">Ask your HR manager</a></span>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section class="login register" id="registerbox" style="display: none;">
-            <div class="col-lg-12 main">
-    <div class="container-fluid myteam person companyadmin register defaultview" ng-controller="companyRegistrationCtrl">   
-        <div class="row contentrow">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="tab-content">
-                    <div id="about" class="tab-pane active" style="margin: 0 -15px;">
-                        <div class="col-lg-8 col-md-10" style="float: none; margin: auto; max-width: 800px !important;">
-                            <img src="assets/img/logo-register.png" alt="" style="margin: 20px 0 40px 0;" />
-                            <div class="card details left">
-                                <div class="col-md-6">
-                                    <h1>Create your company account</h1>
-                                    <p>Create an account for Interact and get your organisation in sync...</p>
+    <section class="login register" id="loginbox">
+        <div class="col-lg-12 main">
+            <div class="container-fluid myteam person companyadmin register defaultview" ng-controller="LoginController">
+                <div class="row contentrow">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-content">
+                            <div id="about" class="tab-pane active" style="margin: 0 -15px;">
+                                <div class="col-lg-8 col-md-10" style="float: none; margin: auto; max-width: 800px !important;">
+                                    <img src="assets/img/logo-register.png" alt="" style="margin: 20px 0 40px 0;" />
+                                    <div class="card details left">
+                                        <div class="col-md-6">
+                                        </div>
+                                        <div class="col-md-6 form">
+                                            <span class="title">Username</span>
+                                            <input type="text" ng-model="credentials.username" placeholder="Your username" />
+                                            <span class="title">Password</span>
+                                            <input type="password" placeholder="password" ng-model="credentials.password" />
+                                            <span ng-if="loginError!=null">
+                                                <span class="login-error">Use a valid name and password.</span>
+                                            </span>
+                                            <input type="button" class="discussionbtn" value="Login" ng-click="login(credentials)" ng-disabled="form.$invalid" />
+                                        </div>
+                                        <div class="clr"></div>
+                                        <span class="noaccount">No account yet? <a href="" class="btn-register">Signup for a new account</a></span>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 form">
-                                    <span class="title">Company name</span>
-                                    <input type="text" ng-model="newcompany.name" placeholder="Company Name">
-                                    <span class="title">Your name</span>
-                                    <input type="text" ng-model="newcompany.accountname" placeholder="Your Name"/>
-                                    <span class="title">Your email address</span>
-                                    <input type="text" placeholder="E-Mail" ng-model="newcompany.email" />
-                                    <span class="title">Password</span>
-                                    <input type="password" placeholder="password" ng-model="newcompany.password" />
-                                    <span class="title">Confirm Password</span>
-                                    <input type="password" placeholder="confirm password" id="confirmPassword" ng-model="newcompany.passwordConfirm" data-match="company.password" />
-                                    <div data-ng-show="form.confirmPassword.$error.match">Passwords do not match!</div>
-                                    <input type="button" class="discussionbtn" value="Get started" ng-click="register(newcompany)" ng-disabled="form.$invalid"/>                                                   
-                                </div>
-                                <div class="clr"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-        </section>
+    </section>
+
+    <section class="login register" id="registerbox" style="display: none;">
+        <div class="col-lg-12 main">
+            <div class="container-fluid myteam person companyadmin register defaultview" ng-controller="companyRegistrationCtrl">
+                <div class="row contentrow">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-content">
+                            <div id="about" class="tab-pane active" style="margin: 0 -15px;">
+                                <div class="col-lg-8 col-md-10" style="float: none; margin: auto; max-width: 800px !important;">
+                                    <img src="assets/img/logo-register.png" alt="" style="margin: 20px 0 40px 0;" />
+                                    <div class="card details left">
+                                        <div class="col-md-6">
+                                            <h1>Create your company account</h1>
+                                            <p>Create an account for Interact and get your organisation in sync...</p>
+                                        </div>
+                                        
+                                        <div class="col-md-6 form">
+                                            <form  name="form" novalidate>
+                                            <span class="title">Company name</span>
+                                            <input type="text" ng-model="newcompany.name" placeholder="Company Name" required>
+                                            <span class="title">Your name</span>
+                                            <input type="text" ng-model="newcompany.accountname" placeholder="Your Name" required/>
+                                            <span class="title">Your email address</span>
+                                            <input type="text" placeholder="E-Mail" ng-model="newcompany.email" required/>
+                                            <span class="title">Password</span>
+                                            <input type="password" placeholder="password" ng-model="newcompany.password"  required/>
+                                            <span class="title">Confirm Password</span>
+                                            <input type="password" placeholder="confirm password" name="confirmPassword" ng-model="newcompany.passwordConfirm" data-match="newcompany.password" />
+                                            <span ng-if="registrationError!=null">
+                                                <span class="login-error">Failed to register this account.</span>
+                                            </span>
+                                            <span class="login-error" data-ng-show="form.confirmPassword.$error.match">Passwords do not match!</span>
+                                            <input type="button" class="discussionbtn" value="Get started" ng-click="register(newcompany)" ng-disabled="form.$invalid" />
+                                            </form>
+                                        </div>
+                                        <div class="clr"></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
 </section>

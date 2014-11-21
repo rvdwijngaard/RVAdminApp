@@ -7,12 +7,16 @@ angular.module("rvAdminApp.authentication", [])
     };
 
     $scope.login = function (credentials) {
-        loginService.login(credentials);
+        loginService.login(credentials).then(null, function(){
+            $scope.loginError = true;
+        });
     };
 
     $scope.logout = function() {
         loginService.logout();
     };
+
+
 }])
 
 .directive('authApplication', function ($http, loginService) {
@@ -72,6 +76,8 @@ angular.module("rvAdminApp.authentication", [])
                     $window.sessionStorage.currentUser = JSON.stringify(user);
                     _loginConfirmed(user);
                     d.resolve();
+                }, function(error){
+                    d.reject(error);
                 });
             return d.promise;
         },
